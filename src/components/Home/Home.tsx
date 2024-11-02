@@ -27,6 +27,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import Logo from "../images/brixbuildsmainlogo.png";
 import JordanHeadshot from "../images/jordanheadshot.png";
 import TatyanaHeadshot from "../images/tatyanaheadshot.png";
+import { GraduationCap } from 'lucide-react';
 
 const StyledButton = styled(Button)(({ theme }) => ({
   borderRadius: 8,
@@ -135,28 +136,28 @@ const HomePage = () => {
           Comprehensive solutions tailored to your needs, delivered with excellence
         </Typography>
         <Grid container spacing={4}>
-          {[
-            { icon: <BusinessIcon sx={{ fontSize: 32 }} />, title: 'Development', description: 'Strategic real estate development with a focus on sustainability and community impact.' },
-            { icon: <BuildIcon sx={{ fontSize: 32 }} />, title: 'Course', description: 'Learn Real Estate Development from start to finish, from Brix Builds' },
-            { icon: <PeopleIcon sx={{ fontSize: 32 }} />, title: 'Consulting', description: 'Professional guidance to optimize your real estate investments and projects.' }
-          ].map((service, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <GlassCard>
-                <CardContent sx={{ p: 4, textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                  <IconButton sx={{ color: 'primary.main', mb: 2 }}>
-                    {service.icon}
-                  </IconButton>
-                  <Typography variant="h6" sx={{ mb: 1, fontWeight: 600 }}>
-                    {service.title}
-                  </Typography>
-                  <Typography color="text.secondary">
-                    {service.description}
-                  </Typography>
-                </CardContent>
-              </GlassCard>
-            </Grid>
-          ))}
-        </Grid>
+  {[
+    { icon: <BusinessIcon sx={{ fontSize: 32 }} />, title: 'Development', description: 'Strategic real estate development with a focus on sustainability and community impact.' },
+    { icon: <GraduationCap size={32} />, title: 'Course', description: 'Learn Real Estate Development from start to finish, from Brix Builds' },
+    { icon: <PeopleIcon sx={{ fontSize: 32 }} />, title: 'Consulting', description: 'Professional guidance to optimize your real estate investments and projects.' }
+  ].map((service, index) => (
+    <Grid item xs={12} sm={6} md={4} key={index}>
+      <GlassCard>
+        <CardContent sx={{ p: 4, textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <IconButton sx={{ color: 'primary.main', mb: 2, '&:hover': {backgroundColor: 'transparent', boxShadow: 'none'}}} disableRipple>
+            {service.icon}
+          </IconButton>
+          <Typography variant="h6" sx={{ mb: 1, fontWeight: 600 }}>
+            {service.title}
+          </Typography>
+          <Typography color="text.secondary">
+            {service.description}
+          </Typography>
+        </CardContent>
+      </GlassCard>
+    </Grid>
+  ))}
+</Grid>
       </Container>
 
 
@@ -179,7 +180,7 @@ const HomePage = () => {
                   <Avatar
                     src={leader.image} 
                     alt={leader.name} 
-                    sx={{ width: 100, height: 150, mb: 2, mx: 'auto', marginTop: 4 }} // Adjust this value to move it down
+                    sx={{ width: 100, height: 150, mb: 2, mx: 'auto', marginTop: 4 }}
                   />
                   <Typography variant="h6" sx={{ fontWeight: 600 }}>{leader.name}</Typography>
                   <Typography color="text.secondary">{leader.title}</Typography>
@@ -192,7 +193,7 @@ const HomePage = () => {
 
 
       <Box sx={{ py: { xs: 6, md: 8 }, backgroundColor: theme.palette.grey[200] }}>
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" style={{textAlign: "center"}}>
           <Typography variant="h4" align="center" sx={{ mb: 2, fontWeight: 700 }}>
             Contact Us
           </Typography>
@@ -201,15 +202,15 @@ const HomePage = () => {
           </Typography>
           <Grid container spacing={4}>
             <Grid item xs={12} md={6}>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ display: 'flex', marginLeft: "300px", alignItems: 'center' }}>
                 <PhoneIcon sx={{ fontSize: 32, mr: 2 }} />
-                <Typography variant="h6">+1 (555) 123-4567</Typography>
+                <Typography variant="h6">+ 1 (469) 466-1002</Typography>
               </Box>
             </Grid>
             <Grid item xs={12} md={6}>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ display: 'flex', marginLeft: "30px", alignItems: 'center' }}>
                 <EmailIcon sx={{ fontSize: 32, mr: 2 }} />
-                <Typography variant="h6">contact@brixbuilds.com</Typography>
+                <Typography variant="h6">info@brixbuilds.com</Typography>
               </Box>
             </Grid>
           </Grid>
