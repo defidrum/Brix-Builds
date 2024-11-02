@@ -144,7 +144,7 @@ const HomePage = () => {
     <Grid item xs={12} sm={6} md={4} key={index}>
       <GlassCard>
         <CardContent sx={{ p: 4, textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-          <IconButton sx={{ color: 'primary.main', mb: 2, '&:hover': {backgroundColor: 'transparent', boxShadow: 'none'}}} disableRipple>
+          <IconButton sx={{ color: 'primary.main', mb: 2, '&:hover': {backgroundColor: 'transparent', boxShadow: 'none'}}}>
             {service.icon}
           </IconButton>
           <Typography variant="h6" sx={{ mb: 1, fontWeight: 600 }}>
