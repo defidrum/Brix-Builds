@@ -12,7 +12,10 @@
     "resolveJsonModule": true,
     "baseUrl": "./src",
     "paths": {
-      "*": ["*", "src/*"]
+      "@components/*": ["components/*"],
+      "@utils/*": ["utils/*"]
     }
-  }
+  },
+  "include": ["src/**/*", "declarations.d.ts"],
+  "exclude": ["node_modules", "build"]
 }
