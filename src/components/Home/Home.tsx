@@ -18,17 +18,20 @@ import {
   alpha
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import MenuIcon from '@mui/icons-material/Menu';
-import BusinessIcon from '@mui/icons-material/Business';
-import BuildIcon from '@mui/icons-material/Build';
-import PeopleIcon from '@mui/icons-material/People';
-import EmailIcon from '@mui/icons-material/Email';
-import PhoneIcon from '@mui/icons-material/Phone';
+import {
+  Menu as MenuIcon,
+  Business as BusinessIcon,
+  People as PeopleIcon,
+  Email as EmailIcon,
+  Phone as PhoneIcon
+} from '@mui/icons-material';
 import Logo from "../images/brixbuildsmainlogo.png";
 import JordanHeadshot from "../images/jordanheadshot.png";
 import TatyanaHeadshot from "../images/tatyanaheadshot.png";
+import TerriHeadshot from "../images/terriheadshot.png";
 import { GraduationCap } from 'lucide-react';
 
+// Styled components
 const StyledButton = styled(Button)(({ theme }) => ({
   borderRadius: 8,
   padding: '8px 24px',
@@ -52,57 +55,33 @@ const GlassCard = styled(Card)(({ theme }) => ({
   justifyContent: 'space-between',
 }));
 
-const NavBar = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+// Handlers
+const handleDevelopmentCourseClick = () => {
+  window.open('https://www.brix-builds-s-school.teachable.com', '_blank');
+};
 
-  return (
-    <AppBar position="fixed" color="transparent" elevation={0} sx={{ backdropFilter: 'blur(8px)' }}>
-      <Toolbar sx={{ justifyContent: 'space-between', px: { xs: 2, sm: 4, md: 6 } }}>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Avatar src={Logo} alt="Brix Builds Logo" sx={{ width: 48, height: 48, mr: 2 }} />
-          <Typography variant="h6" sx={{ display: { xs: 'none', md: 'block' }, fontWeight: 700 }}>
-            Brix Builds
-          </Typography>
-        </Box>
-        {isMobile ? (
-          <IconButton onClick={(e: any) => setAnchorEl(e.currentTarget)} sx={{ color: 'text.primary' }}>
-            <MenuIcon />
-          </IconButton>
-        ) : (
-          <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
-            {['Home', 'Services', 'About'].map((item) => (
-              <Button key={item} sx={{ color: 'text.primary', fontWeight: 600 }}>
-                {item}
-              </Button>
-            ))}
-            <StyledButton variant="contained">Contact Us</StyledButton>
-          </Box>
-        )}
-        <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={() => setAnchorEl(null)}
-          PaperProps={{ sx: { mt: 2, boxShadow: theme.shadows[5] } }}
-        >
-          {['Home', 'Services', 'About', 'Contact'].map((item) => (
-            <MenuItem key={item} onClick={() => setAnchorEl(null)}>
-              {item}
-            </MenuItem>
-          ))}
-        </Menu>
-      </Toolbar>
-    </AppBar>
-  );
+const handleLearnMoreClick = () => { 
+  window.open('/about', '_self');
 };
 
 const HomePage = () => {
   const theme = useTheme();
 
+  const serviceItems = [
+    { icon: <BusinessIcon sx={{ fontSize: 32 }} />, title: 'Development', description: 'Strategic real estate development with a focus on sustainability and community impact.' },
+    { icon: <GraduationCap size={32} />, title: 'Development Course', description: 'Learn Real Estate Development from start to finish, from Brix Builds', onClick: handleDevelopmentCourseClick },
+    { icon: <PeopleIcon sx={{ fontSize: 32 }} />, title: 'Consulting', description: 'Professional guidance to optimize your real estate investments and projects.' },
+  ];
+
+  const leadershipItems = [
+    { name: 'Terri Drummond', title: 'CIO', image: TerriHeadshot },
+    { name: 'Jordan Drummond', title: 'CFO', image: JordanHeadshot },
+    { name: 'Tatyana Dorcinvil', title: 'CDO / Director of Sales & Marketing', image: TatyanaHeadshot },
+  ];
+
   return (
     <Box>
-      <NavBar />
+      {/* Hero Section */}
       <Box sx={{ minHeight: '80vh', pt: 10, background: alpha(theme.palette.primary.light, 0.02), display: 'flex', alignItems: 'center' }}>
         <Container maxWidth="lg">
           <Grid container spacing={6} alignItems="center">
@@ -116,7 +95,7 @@ const HomePage = () => {
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 2, justifyContent: { xs: 'center', md: 'flex-start' } }}>
                   <StyledButton variant="contained">View Projects</StyledButton>
-                  <StyledButton variant="outlined">Learn More</StyledButton>
+                  <StyledButton onClick={handleLearnMoreClick} variant="outlined">Learn More</StyledButton>
                 </Box>
               </Box>
             </Grid>
@@ -127,7 +106,7 @@ const HomePage = () => {
         </Container>
       </Box>
 
-
+      {/* Services Section */}
       <Container maxWidth="lg" sx={{ py: { xs: 6, md: 8 } }}>
         <Typography variant="h4" align="center" sx={{ mb: 2, fontWeight: 700 }}>
           Our Services
@@ -136,31 +115,27 @@ const HomePage = () => {
           Comprehensive solutions tailored to your needs, delivered with excellence
         </Typography>
         <Grid container spacing={4}>
-  {[
-    { icon: <BusinessIcon sx={{ fontSize: 32 }} />, title: 'Development', description: 'Strategic real estate development with a focus on sustainability and community impact.' },
-    { icon: <GraduationCap size={32} />, title: 'Course', description: 'Learn Real Estate Development from start to finish, from Brix Builds' },
-    { icon: <PeopleIcon sx={{ fontSize: 32 }} />, title: 'Consulting', description: 'Professional guidance to optimize your real estate investments and projects.' }
-  ].map((service, index) => (
-    <Grid item xs={12} sm={6} md={4} key={index}>
-      <GlassCard>
-        <CardContent sx={{ p: 4, textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-          <IconButton sx={{ color: 'primary.main', mb: 2, '&:hover': {backgroundColor: 'transparent', boxShadow: 'none'}}}>
-            {service.icon}
-          </IconButton>
-          <Typography variant="h6" sx={{ mb: 1, fontWeight: 600 }}>
-            {service.title}
-          </Typography>
-          <Typography color="text.secondary">
-            {service.description}
-          </Typography>
-        </CardContent>
-      </GlassCard>
-    </Grid>
-  ))}
-</Grid>
+          {serviceItems.map((service, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <GlassCard onClick={service.onClick} sx={{ cursor: service.onClick ? 'pointer' : 'default' }}>
+                <CardContent sx={{ p: 4, textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <IconButton sx={{ color: 'primary.main', mb: 2, '&:hover': {backgroundColor: 'transparent', boxShadow: 'none'}}}>
+                    {service.icon}
+                  </IconButton>
+                  <Typography variant="h6" sx={{ mb: 1, fontWeight: 600 }}>
+                    {service.title}
+                  </Typography>
+                  <Typography color="text.secondary">
+                    {service.description}
+                  </Typography>
+                </CardContent>
+              </GlassCard>
+            </Grid>
+          ))}
+        </Grid>
       </Container>
 
-
+      {/* Leadership Section */}
       <Container maxWidth="lg" sx={{ py: { xs: 6, md: 8 } }}>
         <Typography variant="h4" align="center" sx={{ mb: 2, fontWeight: 700 }}>
           Meet Our Leadership
@@ -169,11 +144,7 @@ const HomePage = () => {
           Get to know the experts driving our vision forward.
         </Typography>
         <Grid container spacing={4} justifyContent="center">
-          {[
-            { name: 'Terri Drummond', title: 'CIO', image: '' },
-            { name: 'Jordan Drummond', title: 'CFO', image: JordanHeadshot},
-            { name: 'Tatyana Dorcinvil', title: 'CDO / Director of Sales & Marketing', image: TatyanaHeadshot },
-          ].map((leader, index) => (
+          {leadershipItems.map((leader, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <GlassCard>
                 <CardContent sx={{ textAlign: 'center', p: 4 }}>
@@ -191,9 +162,9 @@ const HomePage = () => {
         </Grid>
       </Container>
 
-
+      {/* Contact Section */}
       <Box sx={{ py: { xs: 6, md: 8 }, backgroundColor: theme.palette.grey[200] }}>
-        <Container maxWidth="lg" style={{textAlign: "center"}}>
+        <Container maxWidth="lg" style={{ textAlign: "center" }}>
           <Typography variant="h4" align="center" sx={{ mb: 2, fontWeight: 700 }}>
             Contact Us
           </Typography>
